@@ -21,3 +21,21 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+$factory->defineAS(App\Student::class,function (Faker $faker){
+    $faker=Faker\Factory::create('ru_RU');
+    return[
+            'first_name'=>$faker->firstName,
+            'middle_name'=>$faker->lastName,
+            'last_name'=>$faker->middleName,
+            'date_of_birthday'=> $faker->dateTimeThisCentury->format('d-m-Y'),
+            'group_id'=>$faker->numberBetween($min=1,$max=3),
+    ];
+});
+$factory->defineAS(App\Group::class,function (Faker $faker){
+    $faker=Faker\Factory::create('ru_RU');
+    return[
+            'group_name'=>$faker->,
+            'description'=>$faker->lastName,
+            
+    ];
+});

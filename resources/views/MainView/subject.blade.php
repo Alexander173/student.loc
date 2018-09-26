@@ -68,7 +68,7 @@
   </div>
   <div class="container">
     <div class="col-md-1 pull-right">
-            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#myDiv" data-open-text="Open">Добавить Группу</button>
+            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#myDiv" data-open-text="Open">Добавить Предмет</button>
         </div>
   </div>
 </div>

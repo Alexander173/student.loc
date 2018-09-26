@@ -83,7 +83,13 @@
          <div class="col-md-4 column">
         <div class="form-group">
             <div class="col-sm-12">
-                        <input class="form-control" id="" placeholder="Group_id(Подр. на стр. группы)" name="group_id" type="number">
+                <select class="custom-select custom-select-sm" name="group_id">
+                <option selected value="Choose Group" type="number">Choose group</option>
+                @foreach($group as $gr)    
+                  
+                        <option value="{{$gr->id}}" type="number">{{$gr->group_name}}</option>
+                        @endforeach
+                    </select>                       
             </div>
         </div>
         </div>

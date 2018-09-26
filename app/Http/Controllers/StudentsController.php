@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 use App\Student;
 use Illuminate\Http\Request;
-
+use App\Group;
 class StudentsController extends Controller
 {
     public function show()
     {
         $list_stud = Student::all();
        // dump($list_stud);
-              
-        return view('MainView.student',['list_stud'=>$list_stud]);
+              $group=Group::all();
+        return view('MainView.student',['list_stud'=>$list_stud,'group'=>$group]);
     }
     
     public function create(Request $request)
