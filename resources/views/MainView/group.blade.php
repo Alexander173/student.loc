@@ -12,8 +12,8 @@
 <thead class="thead-dark">
 <tr>
     <th scope="col">#</th>
-    <th scope="col">group_name</th>
-    <th scope="col">description</th>
+    <th scope="col">Group name</th>
+    <th scope="col">Description</th>
     <th scope="col">Delete group</th>
     <th scope="col">Updates Subject </th>
 

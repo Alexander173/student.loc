@@ -16,20 +16,10 @@ class StudentsController extends Controller
     
     public function create(Request $request)
     {
-        $student = new Student;
+        Student::create($request->all());
+        $string='Student '.($request->first_name).' was added in the list';
 
-       // $temp=$request->all();
-        //dump($temp);
-        $student->first_name=$request->first_name;
-        $student->middle_name=$request->middle_name;
-        $student->last_name=$request->last_name;
-        $student->date_of_birthday=$request->date_of_birth;
-        $student->group_id=$request->group_id;
-        //dd($student);
-        $student->save();
-        $string='Student '.($student->first_name).' was added in the list';
-
-        return redirect('students')->with('string',$string);
+        return redirect('student/show')->with('string',$string);
     }
     public function delete($id)
     {
@@ -41,7 +31,7 @@ class StudentsController extends Controller
       
         $student->delete();
        
-        return redirect('students')->with('string',$string);
+        return redirect('student/show')->with('string',$string);
     }
      public function update(Request $request, $id)
     {
@@ -75,13 +65,13 @@ class StudentsController extends Controller
             $string='Student № '.($id).' '.($student->first_name).' '.($student->middle_name).' has been Updated at now';
 
 
-            return redirect('students')->with('string',$string);
+            return redirect('student/show')->with('string',$string);
         }
         catch(\Exception $ex){
 
 
 
-            return redirect('students')->with('string', $ex->getMessage());
+            return redirect('student/show')->with('string', $ex->getMessage());
 
         }
 

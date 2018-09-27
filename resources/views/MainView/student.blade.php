@@ -8,11 +8,11 @@
 <thead class="thead-dark">
 <tr>
     <th scope="col">#</th>
-    <th scope="col">First_name</th>
-    <th scope="col">Middle_name</th>
-    <th scope="col">Last_name</th>
-    <th scope="col">Date_of_birthday</th>
-    <th scope="col">Group_id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Middle name</th>
+    <th scope="col">Last name</th>
+    <th scope="col">Date of birthday</th>
+    <th scope="col">Group id</th>
     <th scope="col">Delete Student</th>
     <th scope="col">Updates Student </th>
 </tr>
@@ -76,7 +76,7 @@
         <div class="col-md-3 column">
         <div class="form-group">
             <div class="col-sm-12">
-                        <input class="form-control" id="" placeholder="Дата рождения" name="date_of_birth" type="date">
+                        <input class="form-control" id="" placeholder="Дата рождения" name="date_of_birthday" type="date">
             </div>
         </div>
         </div>

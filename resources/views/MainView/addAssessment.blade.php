@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container1">
-       @if(isset($student))
-          <table class="table table-bordered table-hover table-sm">
+@if(isset($student))
+    <table class="table table-bordered table-hover table-sm">
                <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
@@ -11,24 +11,17 @@
                     <th scope="col">Предмет</th>
                     <th scope="col">Оценка </th>
                     <th scope='col'>Удалить оценку </th>
-
                 </tr>
                 </thead>
-                <tbody>
-            <tr>
-             
-    <td rowspan="{{$student->count()+3}}">{{$student->first()->student_id}}</td>
-      
+        <tbody>
+            <tr>             
+    <td rowspan="{{$student->count()+3}}">{{$student->first()->student_id}}</td>      
     <td rowspan="{{$student->count()+3}}" style="color: #000000">{{$name_temp[0]->first_name.' '. $name_temp[0]->middle_name}}</td>
-    @foreach($student->groupBy('subject_id') as $list)
-        
+        @foreach($student->groupBy('subject_id') as $list)        
         <td rowspan="{{$list->count()+1}}">{{$list[0]->subject->subject_name}}</td>
-        {{-- {{dd($list)}} --}}
-                        @foreach($list as $last)                  
-                 
+                        @foreach($list as $last)                
                             <tr>
-                                <td>{{$last->assess}}</td>
-                               
+                                <td>{{$last->assess}}</td>                              
                                     <td>
                                     <form method="post" action="{{route('deleteAssessment',$last->id)}}">                                
                          {{method_field('DELETE')}}
@@ -36,26 +29,14 @@
                           <button type="submit" class="btn btn-primary btn-sm" style="margin: 0 !important;padding: 0!important ">Delete Mark</button>
                             </form>
                                  </td>
-</tr>
-
-                    @endforeach
-                    @endforeach
-                    @if(!empty($studentAvg))
-                        @if(($studentAvg>3) && ($studentAvg<4.5))
-                            <td colspan="4">
-                                <p class="text-sm-left font-weight-bold">
-                                    Средний бал {{$name_temp[0]->first_name. ' '.$name_temp[0]->middle_name .' '. round($studentAvg,2)}}
-                                </p>
-                            </td>
-                            @else
+                                 </tr>
+                        @endforeach
+        @endforeach           
                             @include('layouts.colorStudentAvg',$name_temp)
-                            @endif
-                            @endif
-
                             </tr>
-                        </tbody>               
-            </table>
-        @endif
+        </tbody>               
+    </table>
+@endif
     </div>
  @if(isset($student))
     <div class="d-flex justify-content-between">
@@ -80,11 +61,9 @@
                                     @endfor
                                 </select>
                             </div>
-                       @endforeach
-            
-        <div class="">
-        
-                    <select class="custom-select custom-select-sm" name="Add mark" type="number">
+                       @endforeach            
+        <div class="">        
+                    <select class="custom-select custom-select-sm" name="assess" type="number">
                         <option selected value="Add_mark" type="text">Add mark</option>
                         <option value="2" type="number">2</option>
                         <option value="3" type="number">3</option>
@@ -92,19 +71,15 @@
                         <option value="5" type="number">5</option>
                     </select>
         </div>
-
                     <div class="pb-4">
                     <label for="labelTag">{{$list[0]->subject->subject_name}}</label>
                         <button type="submit" class="btn btn-default" href="" id="labelTag">Update</button>
                     </div>
     </div>
-
         {{csrf_field()}}
     </form>
         </div>
     @endforeach
-
-
     </div>
 @endif
     @endsection

@@ -15,14 +15,11 @@ class SubjectController extends Controller
     }
     public function create(Request $request)
     {
-        $subject=new Subject;
+        Subject::create($request->all());
 
-        $subject->subject_name=$request->subject_name;
-        $subject->save();
+        $string='Subject '.($request->subject_name).' was added in the list';
 
-        $string='Subject '.($subject->subject_name).' was added in the list';
-
-        return redirect('subjects')->with('string',$string);
+        return redirect('subject/show')->with('string',$string);
     }
      public function delete($id)
     {
@@ -32,7 +29,7 @@ class SubjectController extends Controller
       
         $subject->delete();
        
-        return redirect('subjects')->with('string',$string);
+        return redirect('subject/show')->with('string',$string);
     }
      public function update(Request $request, $id)
     {
@@ -49,11 +46,11 @@ class SubjectController extends Controller
            $string = 'Subject № ' . ($id) . ' was been Updated at now';
 
 
-           return redirect('subjects')->with('string', $string);
+           return redirect('subject/show')->with('string', $string);
        }
        catch (\Exception $ex){
 
-           return redirect('subjects')->with('string', $ex->getMessage());
+           return redirect('subjects/show')->with('string', $ex->getMessage());
        }
        
 

@@ -14,33 +14,28 @@
 Route::get('/', function(){
     return view('welcome');
 })->name('home');
-Route::get('/students','StudentsController@show')->name('students');
-Route::get('/groups','GroupController@show')->name('groups');
-Route::get('/subjects','SubjectController@show')->name('subjects');
-// Route::get('/assessments','AssessmentController@show')->name('assessments');
+Route::group(['prefix'=>'student'],function(){
+        Route::get('show','StudentsController@show')->name('students');
+        Route::post('create','StudentsController@create')->name('createStudent');
+        Route::delete('delete/{id}', 'StudentsController@delete')->name('deleteStudent');
+        Route::put('update/{id}','StudentsController@update')->name('updateStudent');
+});
+Route::group(['prefix'=>'group'],function(){       
+    Route::get('show','GroupController@show')->name('groups');
+    Route::post('create', 'GroupController@create')->name('createGroup');
+    Route::delete('delete/{id}', 'GroupController@delete')->name('deleteGroup');
+    Route::put('update/{id}','GroupController@update')->name('updateGroup');
+});
+Route::group(['prefix'=>'subject'],function(){
+    Route::get('show','SubjectController@show')->name('subjects');
+    Route::delete('delete/{id}', 'SubjectController@delete')->name('deleteSubject');
+    Route::put('update/{id}','SubjectController@update')->name('updateSubject');
+    Route::post('create', 'SubjectController@create')->name('createSubject');
+});
 
-//Created route
-Route::post('/students/create','StudentsController@create')->name('createStudent');
-Route::post('/groups/create', 'GroupController@create')->name('createGroup');
-Route::post('/subjects/create', 'SubjectController@create')->name('createSubject');
-
-
-//Deleted route
-Route::delete('students/delete/{id}', 'StudentsController@delete')->name('deleteStudent');
-Route::delete('groups/delete/{id}', 'GroupController@delete')->name('deleteGroup');
-Route::delete('subjects/delete/{id}', 'SubjectController@delete')->name('deleteSubject');
-Route::delete('assessments/delete/{id}', 'AssessmentController@deleteAssessment')->name('deleteAssessment');
-
-//Updated route
-Route::put('students/update/{id}','StudentsController@update')->name('updateStudent');
-Route::put('groups/update/{id}','GroupController@update')->name('updateGroup');
-Route::put('subjects/update/{id}','SubjectController@update')->name('updateSubject');
-Route::put('assessments/createOrUpdate{id}','AssessmentController@editAssessment')->name('editAssessment');
-
-//Group info
-Route::get('groups/group{id}', 'GroupController@showGroup')->name('showGroup');
-
-//Student info
-Route::get('assessments/student{id}', 'AssessmentController@showStudent')->name('showStudent');
-
-
+Route::group(['prefix'=>'assessment'],function(){
+        Route::get('student{id}', 'AssessmentController@showStudent')->name('showStudent');
+        Route::get('group{id}', 'GroupController@showGroup')->name('showGroup');
+        Route::put('createOrUpdate/{id}','AssessmentController@editAssessment')->name('editAssessment');
+        Route::delete('delete/{id}', 'AssessmentController@deleteAssessment')->name('deleteAssessment');
+});

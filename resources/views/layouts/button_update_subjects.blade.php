@@ -23,7 +23,7 @@
         </div>        
         <div class="col-md-2 column">
              <button type="submit" class="btn btn-default" href="">Update</button>
-             <button type="button" class="btn btn-link pull-right" data-toggle="collapse" data-target="#myDiv" data-open-text="Open">x</button>
+             <button type="button" class="btn btn-link pull-right" data-toggle="collapse" data-target="#myDiv{{$list->id}}" data-open-text="Open">x</button>
         </div>
     </div>       
     </div>

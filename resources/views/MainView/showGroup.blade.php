@@ -5,31 +5,25 @@
             <table class="table table-bordered table-hover table-striped table-sm">
                 <thead class="thead-dark">
                 <tr>
-
                     <th scope="col">group_name</th>
                     <th scope="col">description</th>
-
                     <th scope="col">Updates Subject </th>
-
                 </tr>
                 </thead>
                 <tbody class="">
                 @foreach($list_group as $list)
                     <tr>
-
                         <td>{{$list->group_name}}</td>
                         <td>{{$list->description}}</td>
-
                         <td>  @include('layouts.button_update_group') </td>
                     </tr>
                 @endforeach
-
                 </tbody>
             </table>
         @endif
     </div>
     <div class="container1">
-        @if(!empty($list_group))
+@if(!empty($list_group))
             <table class="table table-bordered table-hover table-sm">
                 <thead class="thead-dark">
                 <tr>
@@ -37,61 +31,36 @@
                     <th scope="col">Студент</th>
                     <th scope="col">Предмет</th>
                     <th scope="col">Оценка </th>
-
                 </tr>
                 </thead>
-                <tbody>
-                @foreach($list_group as $list_temp)
-                     @foreach($list_temp->student as $list)
-
-
-<tr>
-    <td rowspan="{{$list->assessment->count()+3}}">{{$list->id}}</td>
-    <td rowspan="{{$list->assessment->count()+3}}"><a href="{{route('showStudent',$list->id)}}" style="color: #000000">{{$list->first_name .' '. $list->middle_name.' ' . $list->last_name}}</a></td>
-
-    @foreach($list->assessment->groupBy('subject_id') as $list_as)
-
-    <td rowspan="{{$list_as->count()+1}}">{{$list_as->first()->subject->subject_name}}</td>
-           @foreach($list_as as $list_mark)
-                         
-                            <tr>
-
-            
-             <td>{{$list_mark->assess}}</td>
-                            </tr>
-                           
+            <tbody>
+    @foreach($list_group as $list_temp)
+        @foreach($list_temp->student as $list)
+        <tr>
+            <td rowspan="{{$list->assessment->count()+3}}">{{$list->id}}</td>
+            <td rowspan="{{$list->assessment->count()+3}}"><a href="{{route('showStudent',$list->id)}}" style="color: #000000">{{$list->first_name .' '. $list->middle_name.' ' . $list->last_name}}</a></td>
+            @foreach($list->assessment->groupBy('subject_id') as $list_as)
+            <td rowspan="{{$list_as->count()+1}}">{{$list_as->first()->subject->subject_name}}</td>
+                @foreach($list_as as $list_mark)                         
+                    <tr>            
+                        <td>{{$list_mark->assess}}</td>
+                     </tr>                     
+                @endforeach       
+            @endforeach
+                           @include('layouts.colorStudentAvg')
+             </tr>
         @endforeach
-       
-      @endforeach
-
-                     @if(!empty($studentAvg[$list->id]))
-                         @if(($studentAvg[$list->id]>3) && ($studentAvg[$list->id]<4.5))
-                         <td colspan="4">
-                             <p class="text-sm-left font-weight-bold">
-                                 Средний бал {{$list->first_name. ' '.$list->middle_name .' '.round($studentAvg[$list->id],2)}}
-                             </p>
-                         </td>
-                         @else
-                         @include('layouts.colorStudentAvg')
-                             @endif
-                         @endif
-
-</tr>
-
-
     @endforeach
-                @endforeach
-                </tbody>
+            </tbody>
                 <caption>
                 @if(isset($arr))
                     @foreach($arr as $key=>$value)
                     <p class="text-sm-left font-weight-bold">{{$key ." = ". round($value,2)}}</p>
-                        @endforeach
-                    @endif
+                    @endforeach
+                 @endif
                 </caption>
             </table>
-
-        @endif
+@endif
     </div>
     <p class="text-sm-center font-weight-bold">Студенты отличники</p>
     <div class="container justify-content-md-center" >
@@ -99,27 +68,26 @@
         @if(!empty($list_group))
             <table class="table table-bordered table-hover table-sm ">
                 <thead class="thead-dark">
-                <tr>
+                    <tr>
                     <th scope="">#</th>
                     <th scope="">Студент</th>
                     <th scope="">Средний бал</th>
-                                  </tr>
+                    </tr>
                 </thead>
                 <tbody>
                 @foreach($list_group as $list_temp)
                     @foreach($list_temp->student as $list)
                         @if(!empty($studentAvg[$list->id]))
                             @if(($studentAvg[$list->id]==5))
-                <tr>
+                    <tr>
                     <td>{{$list->id}}</td>
                     <td>{{$list->first_name .' '. $list->middle_name.' ' . $list->last_name}}</td>
-                                @include('layouts.colorStudentAvg')
-                            </tr>
-                            @else
-                                @endif
+                        @include('layouts.colorStudentAvg')
+                    </tr>
+                           @endif
                         @endif
-                            @endforeach
-                            @endforeach
+                    @endforeach
+                @endforeach
                 </tbody>
             </table>
         @endif
@@ -153,9 +121,7 @@
                     @endforeach
                     </tbody>
                 </table>
-
-
             @endif
         </div>
     </div>
-       @endsection
+@endsection
