@@ -17,7 +17,7 @@ class AssessmentsTable extends Migration
             $table->increments('id');  
             $table->integer('student_id')->unsigned();
             $table->integer('subject_id')->unsigned();
-            $table->integer('assess');           
+            $table->tinyInteger('assess');           
         });
     }
 

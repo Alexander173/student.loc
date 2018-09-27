@@ -26,7 +26,7 @@ $factory->defineAS(App\Student::class,'assessment',function (Faker $faker){
             'first_name'=>$faker->firstName,
             'middle_name'=>$faker->lastName,
             'last_name'=>$faker->firstName,
-            'date_of_birthday'=> $faker->dateTimeThisCentury->format('d-m-Y'),
+            'date_of_birthday'=> $faker->dateTimeThisCentury->format('Y-m-d'),
             'group_id'=>$faker->randomElement(App\Group::pluck('id')->toArray()),
     ];
 });
@@ -47,3 +47,4 @@ $factory->defineAs(App\Assessment::class,'assessment',function(Faker $faker){
             'subject_id'=>$faker->randomElement(App\Subject::pluck('id')->toArray()),
             'assess'=>$faker->numberBetween($min=2,$max=5),
     ];
+});
