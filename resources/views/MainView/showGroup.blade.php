@@ -37,8 +37,8 @@
     @foreach($list_group as $list_temp)
         @foreach($list_temp->student as $list)
         <tr>
-            <td rowspan="{{$list->assessment->count()+3}}">{{$list->id}}</td>
-            <td rowspan="{{$list->assessment->count()+3}}"><a href="{{route('showStudent',$list->id)}}" style="color: #000000">{{$list->first_name .' '. $list->middle_name.' ' . $list->last_name}}</a></td>
+            <td rowspan="{{$list->assessment->count()+$list->assessment->groupBy('subject_id')->count()}}">{{$list->id}}</td>
+            <td rowspan="{{$list->assessment->count()+$list->assessment->groupBy('subject_id')->count()}}"><a href="{{route('showStudent',$list->id)}}" style="color: #000000">{{$list->first_name .' '. $list->middle_name.' ' . $list->last_name}}</a></td>
             @foreach($list->assessment->groupBy('subject_id') as $list_as)
             <td rowspan="{{$list_as->count()+1}}">{{$list_as->first()->subject->subject_name}}</td>
                 @foreach($list_as as $list_mark)                         
