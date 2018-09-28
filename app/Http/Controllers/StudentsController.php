@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+Use App\Http\Requests\StudentRequest;
 use App\Student;
 use Illuminate\Http\Request;
 use App\Group;
@@ -14,11 +15,11 @@ class StudentsController extends Controller
         return view('MainView.student',['list_stud'=>$list_stud,'group'=>$group]);
     }
     
-    public function create(Request $request)
+    public function create(StudentRequest $request)
     {
+        
         Student::create($request->all());
         $string='Student '.($request->first_name).' was added in the list';
-
         return redirect('student/show')->with('string',$string);
     }
     public function delete($id)

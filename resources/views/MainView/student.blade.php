@@ -84,7 +84,7 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <select class="custom-select custom-select-sm" name="group_id">
-                <option selected value="Choose Group" type="number">Choose group</option>
+                <option selected value="" type="number">Choose group</option>
                 @foreach($group as $gr)    
                   
                         <option value="{{$gr->id}}" type="number">{{$gr->group_name}}</option>

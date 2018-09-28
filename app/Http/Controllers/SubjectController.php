@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\SubjectRequest;
 use Illuminate\Http\Request;
 use App\Subject;
 
@@ -10,10 +10,11 @@ class SubjectController extends Controller
      public function show()
     {
          $list_subject=Subject::all();
+        
 
         return view('MainView.subject', ['list_subject'=>$list_subject]);       
     }
-    public function create(Request $request)
+    public function create(SubjectRequest $request)
     {
         Subject::create($request->all());
 

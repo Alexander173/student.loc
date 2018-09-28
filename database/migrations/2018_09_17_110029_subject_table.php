@@ -15,7 +15,7 @@ class SubjectTable extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('subject_name', 60);
+            $table->string('subject_name', 60)->unique();
           
            });
     }

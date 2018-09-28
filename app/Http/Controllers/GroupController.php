@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Assessment;
+use App\Http\Requests\GroupRequest;
 use Illuminate\Http\Request;
 use App\Group;
 use PHPUnit\Exception;
@@ -11,10 +12,11 @@ class GroupController extends Controller
      public function show()
     {
         $list_group=Group::all();
+        
 
         return view('MainView.group', ['list_group'=>$list_group]);
     }
-    public function create(Request $request)
+    public function create(GroupRequest $request)
     {
         Group::create($request->all());
 
