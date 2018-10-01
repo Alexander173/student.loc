@@ -14,10 +14,8 @@ class StudentsController extends Controller
               $group=Group::all();
         return view('MainView.student',['list_stud'=>$list_stud,'group'=>$group]);
     }
-    
     public function create(StudentRequest $request)
     {
-        
         Student::create($request->all());
         $string='Student '.($request->first_name).' was added in the list';
         return redirect('student/show')->with('string',$string);
@@ -29,31 +27,15 @@ class StudentsController extends Controller
         $string='Student '.($student->first_name).' '.($student->middle_name).' '.($student->last_name).
                                                                                           PHP_EOL.
                                                                                  'has been deleted';
-      
         $student->delete();
-       
+
         return redirect('student/show')->with('string',$string);
     }
-     public function update(Request $request, $id)
+     public function update(StudentRequest $request, $id)
     {
-       
         $student=Student::find($id);
-        
-        try {
-            
-            $student->update($request->all());  
-            $string='Student № '.($id).' '.($student->first_name).' '.($student->middle_name).' has been Updated at now';
-
-
-            return redirect('student/show')->with('string',$string);
-        }
-        catch(\Exception $ex){
-
-
-
-            return redirect('student/show')->with('string', $ex->getMessage());
-
-        }
-
+        $student->update($request->all());
+        $string='Student № '.($id).' '.($student->first_name).' '.($student->middle_name).' has been Updated at now';
+        return redirect('student/show')->with('string',$string);
     }
 }

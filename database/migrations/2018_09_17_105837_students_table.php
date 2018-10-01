@@ -20,8 +20,6 @@ class StudentsTable extends Migration
             $table->string('last_name', 50);
             $table->date('date_of_birthday');
             $table->integer('group_id')->unsigned();
-            
-            
         });
     }
 

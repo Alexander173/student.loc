@@ -2,21 +2,31 @@
 @section('content')
     <div class="container1">
         @if(isset($list_group))
-            <table class="table table-bordered table-hover table-striped table-sm">
+            <table class="table table-bordered table-hover table-striped table-sm text-sm-center">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">group_name</th>
-                    <th scope="col">description</th>
-                    <th scope="col">Update Group</th>
+                    <th scope="col">Название группы</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Успеваемость</th>
+                    <th scope="col">Средняя оценка по математике</th>
+                    <th scope="col">Средняя оценка по истории</th>
+                    <th scope="col">Средняя оценка по русскому</th>
+                    <th scope="col">Удалить группу</th>
                 </tr>
                 </thead>
                 <tbody class="">
                 @foreach($list_group as $list)
+                  @if(isset($arr))
                     <tr>
                         <td>{{$list->group_name}}</td>
                         <td>{{$list->description}}</td>
-                        <td>  @include('layouts.button_update_group') </td>
+                        <td>{{$arr['avg_group']}}</td>
+                        <td>{{$arr['Математика']}}</td>
+                        <td>{{$arr['История']}}</td>
+                        <td>{{$arr['Русский язык']}}</td>
+                        <td> </td>
                     </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
@@ -41,11 +51,11 @@
             <td rowspan="{{$list->assessment->count()+$list->assessment->groupBy('subject_id')->count()}}"><a href="{{route('showStudent',$list->id)}}" style="color: #000000">{{$list->first_name .' '. $list->middle_name.' ' . $list->last_name}}</a></td>
             @foreach($list->assessment->groupBy('subject_id') as $list_as)
             <td rowspan="{{$list_as->count()+1}}">{{$list_as->first()->subject->subject_name}}</td>
-                @foreach($list_as as $list_mark)                         
-                    <tr>            
+                @foreach($list_as as $list_mark)
+                    <tr>
                         <td>{{$list_mark->assess}}</td>
-                     </tr>                     
-                @endforeach       
+                     </tr>
+                @endforeach
             @endforeach
                            @include('layouts.colorStudentAvg')
              </tr>

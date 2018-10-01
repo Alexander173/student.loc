@@ -21,13 +21,13 @@
             @if(($studentAvg>3) && ($studentAvg<4.5))
                             <td colspan="4">
                                 <p class="text-sm-left font-weight-bold">
-                                    Средний бал {{$name_temp[0]->first_name. ' '.$name_temp[0]->middle_name .' '. round($studentAvg,2)}}
+                                    Средний бал {{$name_temp->first_name. ' '.$name_temp->middle_name .' '. round($studentAvg,2)}}
                                 </p>
                             </td>
                             @else
 <td colspan="4" bgcolor="{{ $studentAvg <= 3 ? 'red' : ( (($studentAvg >= 4.5)&&($studentAvg !=5))? 'yellow': 'green') }}">
     <p class="text-sm-left font-weight-bold">
-        Средний бал {{$name_temp[0]->first_name. ' '.$name_temp[0]->middle_name .' '. round($studentAvg,2)}}
+        Средний бал {{$name_temp->first_name. ' '.$name_temp->middle_name .' '. round($studentAvg,2)}}
     </p>
 </td>
 @endif

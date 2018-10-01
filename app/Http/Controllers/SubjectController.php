@@ -18,36 +18,21 @@ class SubjectController extends Controller
 
         $string='Subject '.($request->subject_name).' was added in the list';
 
-        return redirect('subject/show')->with('string',$string);
+        return redirect('subjects')->with('string',$string);
     }
      public function delete($id)
     {
         $subject=Subject::find($id);
 
         $string='Subject '.($subject->subject_name).PHP_EOL.'has been deleted';
-      
         $subject->delete();
-       
-        return redirect('subject/show')->with('string',$string);
+        return redirect('subjects')->with('string',$string);
     }
-     public function update(Request $request, $id)
+     public function update(SubjectRequest $request, $id)
     {
-       
         $subject=Subject::find($id);
-       try {
-            
-            $subject->update($request->all());
-           $string = 'Subject № ' . ($id) . ' was been Updated at now';
-
-
-           return redirect('subject/show')->with('string', $string);
-       }
-       catch (\Exception $ex){
-
-           return redirect('subject/show')->with('string', $ex->getMessage());
-       }
-       
-
-
+        $subject->update($request->all());
+        $string = 'Subject № ' . ($id) . ' was been Updated at now';
+      return redirect('subjects')->with('string', $string);
     }
 }

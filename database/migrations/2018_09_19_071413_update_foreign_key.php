@@ -22,9 +22,11 @@ class UpdateForeignKey extends Migration
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
+        Schema::table('images', function(Blueprint $table)
+        {
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+        });
     }
-    
-
     /**
      * Reverse the migrations.
      *

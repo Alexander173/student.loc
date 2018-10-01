@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-    
      protected $fillable=['group_name', 'description'];
     public $timestamps=false;
      public function student()
@@ -19,5 +18,4 @@ class Group extends Model
              'App\Assessment','App\Student',
              'group_id','student_id','id');
    }
- 
 }

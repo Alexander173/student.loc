@@ -1,6 +1,6 @@
 
   <div class="container">
-    <div class="col-md-1 pull-right">
+    <div class="col-md-1">
             <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#myDiv{{$list->id}}" data-open-text="Open">Редактировать</button>
         </div>
   </div>

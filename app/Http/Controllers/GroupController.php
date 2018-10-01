@@ -12,7 +12,6 @@ class GroupController extends Controller
      public function show()
     {
         $list_group=Group::all();
-        
 
         return view('MainView.group', ['list_group'=>$list_group]);
     }
@@ -22,29 +21,21 @@ class GroupController extends Controller
 
         $string='Group '.($request->group_name).' was added in the list';
 
-        return redirect('group/show')->with('string',$string);
+        return redirect('groups')->with('string',$string);
     }
      public function delete($id)
     {
         $group=Group::find($id);
-        $string='Group '.($group->group_name).PHP_EOL.'has been deleted';      
-        $group->delete();       
-        return redirect('group/show')->with('string',$string);
+        $string='Group '.($group->group_name).PHP_EOL.'has been deleted';
+        $group->delete();
+        return redirect('groups')->with('string',$string);
     }
-     public function update(Request $request, $id)
+     public function update(GroupRequest $request, $id)
     {
-       $group=Group::find($id);
-        try 
-        {
+            $group=Group::find($id);
             $group->update($request->all());
             $string='Group '.($group->group_name).' was been Updated at now';
-
-            return redirect('group/show')->with('string',$string);
-            }
-        catch(\Exception $ex)
-            {
-                      return redirect('group/show')->with('string',$ex->getMessage());
-            }
+        return redirect('groups')->with('string',$string);
     }
 
     public function showGroup($id)
@@ -56,7 +47,7 @@ class GroupController extends Controller
         $group_avg=array();
         $student_avg=array();
         foreach($list_group as $list) {
-           $group_avg['Средний по группе']=($list->assessment->avg('assess'));
+           $group_avg['avg_group']=($list->assessment->avg('assess'));
         foreach($list->assessment as $last) {
             $group_avg[$last->subject->subject_name] = $list->assessment->
             where('subject_id', $last->subject_id)->avg('assess');
@@ -66,7 +57,5 @@ class GroupController extends Controller
         }
         }
             return view('MainView.showGroup', ['list_group'=>$list_group,'arr'=>$group_avg,'studentAvg'=>$student_avg]);
-
-
     }
 }

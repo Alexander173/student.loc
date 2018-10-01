@@ -20,22 +20,23 @@ Route::group(['prefix'=>'student'],function(){
         Route::delete('delete/{id}', 'StudentsController@delete')->name('deleteStudent');
         Route::put('update/{id}','StudentsController@update')->name('updateStudent');
 });
-Route::group(['prefix'=>'group'],function(){       
-    Route::get('show','GroupController@show')->name('groups');
+Route::group(['prefix'=>'groups'], function(){
+    Route::get('/','GroupController@show')->name('groups');
     Route::post('create', 'GroupController@create')->name('createGroup');
     Route::delete('delete/{id}', 'GroupController@delete')->name('deleteGroup');
     Route::put('update/{id}','GroupController@update')->name('updateGroup');
 });
-Route::group(['prefix'=>'subject'],function(){
-    Route::get('show','SubjectController@show')->name('subjects');
+Route::group(['prefix'=>'subjects'],function(){
+    Route::get('/','SubjectController@show')->name('subjects');
     Route::delete('delete/{id}', 'SubjectController@delete')->name('deleteSubject');
     Route::put('update/{id}','SubjectController@update')->name('updateSubject');
     Route::post('create', 'SubjectController@create')->name('createSubject');
 });
 
 Route::group(['prefix'=>'assessment'],function(){
-        Route::get('student{id}', 'AssessmentController@showStudent')->name('showStudent');
-        Route::get('group{id}', 'GroupController@showGroup')->name('showGroup');
+        Route::get('student/{id}', 'AssessmentController@showStudent')->name('showStudent');
+        Route::get('group/{id}', 'GroupController@showGroup')->name('showGroup');
         Route::put('createOrUpdate/{id}','AssessmentController@editAssessment')->name('editAssessment');
         Route::delete('delete/{id}', 'AssessmentController@deleteAssessment')->name('deleteAssessment');
 });
+//Route::resource('groups','GroupController');

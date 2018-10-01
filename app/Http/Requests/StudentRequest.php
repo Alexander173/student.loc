@@ -28,7 +28,7 @@ class StudentRequest extends FormRequest
         'middle_name'=>'required|string|min:3|max:25',
         'last_name'=>'required|string|min:3|max:25',
         'date_of_birthday'=>'required|date',
-        'group_id'=>'required',           
+        'group_id'=>'required',
         ];
     }
     public function messages()

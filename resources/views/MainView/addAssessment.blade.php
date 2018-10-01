@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('layouts.image_out')
     @include('layouts.add_assessment_table')
     @include('layouts.add_assessment')
      <div class="d-flex justify-content-between flex-wrap">
@@ -10,8 +11,8 @@
     <form method="post" action="{{route('editAssessment',$subject->id)}}">
         {{method_field('PUT')}}
      <div class="col-md-4">
-                <input type="hidden" name="student_id" value="{{$name_temp[0]->id}}">                               
-        <div class="">        
+                <input type="hidden" name="student_id" value="{{$name_temp->student[0]->id}}">
+        <div class="">
                     <select class="custom-select custom-select-sm" name="assess" type="number">
                         <option selected value="Add_mark" type="text">Add mark</option>
                         <option value="2" type="number">2</option>
