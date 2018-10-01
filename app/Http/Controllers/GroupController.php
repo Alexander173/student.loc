@@ -36,19 +36,7 @@ class GroupController extends Controller
        $group=Group::find($id);
         try 
         {
-            if ((!empty($request->group_name)) && (!empty($request->description))) {
-                    $group->group_name = $request->group_name;
-                    $group->description = $request->description;
-                    $group->save();
-            } elseif (!empty($request->group_name)) {
-                $group->group_name = $request->group_name;
-
-                $group->save();
-            } else{
-                $group->description = $request->description;
-
-                $group->save();
-            }
+            $group->update($request->all());
             $string='Group '.($group->group_name).' was been Updated at now';
 
             return redirect('group/show')->with('string',$string);

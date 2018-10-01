@@ -15,7 +15,7 @@
     <th scope="col">Group name</th>
     <th scope="col">Description</th>
     <th scope="col">Delete group</th>
-    <th scope="col">Updates Subject </th>
+    <th scope="col">Update group </th>
 
 </tr>
 </thead>

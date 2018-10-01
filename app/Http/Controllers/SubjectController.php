@@ -10,9 +10,7 @@ class SubjectController extends Controller
      public function show()
     {
          $list_subject=Subject::all();
-        
-
-        return view('MainView.subject', ['list_subject'=>$list_subject]);       
+         return view('MainView.subject', ['list_subject'=>$list_subject]);       
     }
     public function create(SubjectRequest $request)
     {
@@ -37,13 +35,8 @@ class SubjectController extends Controller
        
         $subject=Subject::find($id);
        try {
-           if (!empty($request->subject_name)) {
-               $subject->subject_name = $request->subject_name;
-           }
-           else{
-               throw new \Exception('Subject not been Updated: the text is null');
-           }
-           $subject->save();
+            
+            $subject->update($request->all());
            $string = 'Subject № ' . ($id) . ' was been Updated at now';
 
 
@@ -51,7 +44,7 @@ class SubjectController extends Controller
        }
        catch (\Exception $ex){
 
-           return redirect('subjects/show')->with('string', $ex->getMessage());
+           return redirect('subject/show')->with('string', $ex->getMessage());
        }
        
 

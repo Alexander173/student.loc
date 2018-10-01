@@ -38,31 +38,10 @@ class StudentsController extends Controller
     {
        
         $student=Student::find($id);
-        //dd($request);
+        
         try {
-            $bool=false;
-            if (!empty($request->first_name)) {
-                $student->first_name = $request->first_name;$bool=true;
-            }
-            if (!empty($request->middle_name)) {
-                $student->middle_name = $request->middle_name;$bool=true;
-            }
-            if (!empty($request->last_name)) {
-                $student->last_name = $request->last_name;$bool=true;
-            }
-            if (!empty($request->date_of_birth)) {
-                $student->date_of_birthday = $request->date_of_birth;
-                $bool=true;
-            }
-            if (!empty($request->group_id)) {
-                $student->group_id = $request->group_id;
-                $bool=true;
-            }
-
-            if(!$bool){
-                throw new \Exception('Subject not been Updated: the text is null');
-            }
-            $student->save();
+            
+            $student->update($request->all());  
             $string='Student № '.($id).' '.($student->first_name).' '.($student->middle_name).' has been Updated at now';
 
 

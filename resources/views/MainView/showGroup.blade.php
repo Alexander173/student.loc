@@ -7,7 +7,7 @@
                 <tr>
                     <th scope="col">group_name</th>
                     <th scope="col">description</th>
-                    <th scope="col">Updates Subject </th>
+                    <th scope="col">Update Group</th>
                 </tr>
                 </thead>
                 <tbody class="">

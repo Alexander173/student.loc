@@ -17,14 +17,14 @@
         <div class="col-md-4 column">
             <div class="form-group">
                 <div class="col-sm-12">
-                        <input class="form-control" id="inputEmail3" placeholder="Группа" name="group_name" type="text" value="">
+                        <input class="form-control" id="inputEmail3" placeholder="Группа" name="group_name" type="text" value="{{$list->group_name}}">
                 </div>
             </div>
         </div>
         <div class="col-md-4 column">
         <div class="form-group">
             <div class="col-sm-12">
-                        <textarea class="form-control" id="" placeholder="Описание" name="description" type="text" value=""></textarea>
+                        <textarea class="form-control" id="" placeholder="Описание" name="description" type="text" value="">{{$list->description}}</textarea>
             </div>
         </div>
         </div>

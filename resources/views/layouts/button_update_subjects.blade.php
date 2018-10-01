@@ -17,7 +17,7 @@
         <div class="col-md-10 column">
             <div class="form-group">
                 <div class="col-sm-12">
-                        <input class="form-control" id="inputEmail3" placeholder="Редактировать предмет" name="subject_name" type="text" value="">
+                        <input class="form-control" id="inputEmail3" placeholder="Редактировать предмет" name="subject_name" type="text" value="{{$list->subject_name}}">
                 </div>
             </div>
         </div>        
