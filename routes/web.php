@@ -39,4 +39,5 @@ Route::group(['prefix'=>'assessment'],function(){
         Route::put('createOrUpdate/{id}','AssessmentController@editAssessment')->name('editAssessment');
         Route::delete('delete/{id}', 'AssessmentController@deleteAssessment')->name('deleteAssessment');
 });
-//Route::resource('groups','GroupController');
+Route::post('getImage/{id}','ImageController@getImage')->name('getImage');
+Route::post('updateImage/{id}','ImageController@updateImage')->name('updateImage');

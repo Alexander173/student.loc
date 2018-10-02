@@ -16,8 +16,7 @@
 </td>
 @endif
 @endif
-@else
-@if(!empty($studentAvg))
+@elseif(!empty($studentAvg))
             @if(($studentAvg>3) && ($studentAvg<4.5))
                             <td colspan="4">
                                 <p class="text-sm-left font-weight-bold">
@@ -30,6 +29,5 @@
         Средний бал {{$name_temp->first_name. ' '.$name_temp->middle_name .' '. round($studentAvg,2)}}
     </p>
 </td>
-@endif
 @endif
 @endif

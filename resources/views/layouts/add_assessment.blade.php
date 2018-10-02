@@ -1,15 +1,12 @@
 @if(!$assessment->isEmpty())
     <div class="d-flex justify-content-between flex-wrap">
-   @foreach($assessment->groupBy('subject_id') as $list)       
+   @foreach($assessment->groupBy('subject_id') as $list)
        <div class="col-md-4">
     <form method="post" action="{{route('editAssessment',$list[0]->subject_id)}}">
         {{method_field('PUT')}}
-        {{-- @method('PUT') --}}
     <div class="col-md-4">
-                <input type="hidden" name="student_id" value="{{$assessment->first()->student_id}}"> 
-            
+                <input type="hidden" name="student_id" value="{{$assessment->first()->student_id}}">
                 @foreach($list as $last)
-                        
                             <div class="">
                                 <select class="custom-select custom-select-sm" name="Update[{{$last->id}}]">
                                     @for($i=2;$i<=5;++$i)
@@ -21,8 +18,8 @@
                                     @endfor
                                 </select>
                             </div>
-                       @endforeach                           
-        <div class="">        
+                       @endforeach
+        <div class="">
                     <select class="custom-select custom-select-sm" name="assess" type="number">
                         <option selected value="Add_mark" type="text">Add mark</option>
                         <option value="2" type="number">2</option>

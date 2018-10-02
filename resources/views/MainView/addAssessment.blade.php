@@ -1,9 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="text-center"><span>{{$name_temp->student[0]->first_name.' '. $name_temp->student[0]->middle_name.' '.$name_temp->student[0]->last_name}}</span>
+</div>
+<div class="d-sm-flex " style="margin:15px">
+    <div >
     @include('layouts.image_out')
+    <div><p>Дата рождения: {{$name_temp->student[0]->date_of_birthday}}</p>
+    <p>Группа: {{$name_temp->group_name}}</p>
+    </div>
+    </div>
+
+<div class="flex-fill">
     @include('layouts.add_assessment_table')
+    </div>
+    </div>
+    <div>
     @include('layouts.add_assessment')
+    </div>
+
      <div class="d-flex justify-content-between flex-wrap">
     @if(!$list_subject->isEmpty())
     @foreach($list_subject as $subject)

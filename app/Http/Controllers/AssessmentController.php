@@ -27,8 +27,6 @@ class AssessmentController extends Controller
                 $qs->where('id',$id);
             }])->first();
              //
-            //dd($name_temp->student[0]->first_name);
-
             $studentAvg=$assessment->avg('assess');
             return view('MainView.addAssessment',['assessment'=>$assessment,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg,'list_subject'=>$list_subject]);
     }

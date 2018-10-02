@@ -20,10 +20,10 @@
                     <tr>
                         <td>{{$list->group_name}}</td>
                         <td>{{$list->description}}</td>
-                        <td>{{$arr['avg_group']}}</td>
-                        <td>{{$arr['Математика']}}</td>
-                        <td>{{$arr['История']}}</td>
-                        <td>{{$arr['Русский язык']}}</td>
+                        <td>{{round($arr['avg_group'],2)}}</td>
+                        <td>{{round($arr['Математика'],2)}}</td>
+                        <td>{{round($arr['История'],2)}}</td>
+                        <td>{{round($arr['Русский язык'],2)}}</td>
                         <td> </td>
                     </tr>
                     @endif
