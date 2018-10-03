@@ -13,6 +13,7 @@ class StudentsController extends Controller
         $list_stud = Student::all();
         $group=Group::all();
         $subject= Subject::all();
+
         foreach($list_stud as $stud){
             foreach($stud->assessment->groupBy('student_id') as $assessment){
             $student_avg[$stud->id]=$assessment->avg('assess');
