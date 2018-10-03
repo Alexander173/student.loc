@@ -23,10 +23,9 @@ class AssessmentController extends Controller
             $list_subject=Subject::whereNotIn('id', $u)->get();
             //helper для возможности, к примеру, добавления оценок у студентов,
             //которые не имеют ни одной,т.к. assessment будет пустой, а id студента где-то хранить нужно для view
-            $name_temp=Group::with(['student'=>function($qs) use($id){
-                $qs->where('id',$id);
-            }])->first();
+            $name_temp=Student::where('id',$id)->first();
              //
+           // dd($name_temp);
             $studentAvg=$assessment->avg('assess');
             return view('MainView.addAssessment',['assessment'=>$assessment,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg,'list_subject'=>$list_subject]);
     }

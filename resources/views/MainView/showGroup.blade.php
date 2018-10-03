@@ -1,30 +1,41 @@
 @extends('layouts.app')
 @section('content')
     <div class="container1">
-        @if(isset($list_group))
+        @if(!$list_group->isEmpty())
             <table class="table table-bordered table-hover table-striped table-sm text-sm-center">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">Название группы</th>
                     <th scope="col">Описание</th>
                     <th scope="col">Успеваемость</th>
-                    <th scope="col">Средняя оценка по математике</th>
-                    <th scope="col">Средняя оценка по истории</th>
-                    <th scope="col">Средняя оценка по русскому</th>
+                    @foreach($subject as $current_sub)
+                    <th scope="col">{{$current_sub->subject_name}}</th>
+                    @endforeach
                     <th scope="col">Удалить группу</th>
                 </tr>
                 </thead>
                 <tbody class="">
                 @foreach($list_group as $list)
-                  @if(isset($arr))
+                  @if(!$group_avg['avg_group']==null)
                     <tr>
                         <td>{{$list->group_name}}</td>
                         <td>{{$list->description}}</td>
-                        <td>{{round($arr['avg_group'],2)}}</td>
-                        <td>{{round($arr['Математика'],2)}}</td>
-                        <td>{{round($arr['История'],2)}}</td>
-                        <td>{{round($arr['Русский язык'],2)}}</td>
-                        <td> </td>
+                        <td>{{round($group_avg['avg_group'],2)}}</td>
+                        @foreach($subject as $current_sub)
+                            @if(isset($group_avg[$current_sub->subject_name]))
+                        <td>{{round($group_avg[$current_sub->subject_name],2)}}</td>
+                            @else
+                             <td>Оценок нет</td>
+                             @endif
+                        @endforeach
+                        <td>Тут будет кнопка</td>
+                    </tr>
+                    @else
+                    <tr>
+                        <td>{{$list->group_name}}</td>
+                        <td>{{$list->description}}</td>
+                        <td colspan="{{$subject->count()+1}}" class="text-sm-center font-italic">Оценок нет</td>
+                        <td>Тут будет кнопка</td>
                     </tr>
                     @endif
                 @endforeach
@@ -63,8 +74,8 @@
     @endforeach
             </tbody>
                 <caption>
-                @if(isset($arr))
-                    @foreach($arr as $key=>$value)
+                @if(isset($group_avg))
+                    @foreach($group_avg as $key=>$value)
                     <p class="text-sm-left font-weight-bold">{{$key ." = ". round($value,2)}}</p>
                     @endforeach
                  @endif

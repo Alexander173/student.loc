@@ -1,4 +1,5 @@
 <div class="container1">
+
 @if(!$assessment->isEmpty())
     <table class="table table-bordered table-hover table-sm">
                <thead class="thead-dark">
@@ -41,16 +42,13 @@
  <table class="table table-bordered table-hover table-sm">
                <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Студент</th>
+                    <th>Студент без оценок</th>
                     <th scope="col">Оценки</th>
                 </tr>
                 </thead>
         <tbody>
             <tr>
-    <td>{{$name_temp->student[0]->first_name.' '. $name_temp->student[0]->middle_name}}</td>
-    <td rowspan="{{$assessment->count()+$assessment->groupBy('subject_id')->count()}}">{{$name_temp->student[0]->date_of_birthday}}</td>
-    <td rowspan="{{$assessment->count()+$assessment->groupBy('subject_id')->count()}}">{{$name_temp->group_name}}</td>
+    <td>{{$name_temp->first_name.' '. $name_temp->middle_name}}</td>
     <td class="text-center font-italic">Оценок нет </td>
              </tr>
         </tbody>

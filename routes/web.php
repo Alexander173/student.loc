@@ -14,8 +14,8 @@
 Route::get('/', function(){
     return view('welcome');
 })->name('home');
-Route::group(['prefix'=>'student'],function(){
-        Route::get('show','StudentsController@show')->name('students');
+Route::group(['prefix'=>'students'],function(){
+        Route::get('/','StudentsController@show')->name('students');
         Route::post('create','StudentsController@create')->name('createStudent');
         Route::delete('delete/{id}', 'StudentsController@delete')->name('deleteStudent');
         Route::put('update/{id}','StudentsController@update')->name('updateStudent');
@@ -41,3 +41,7 @@ Route::group(['prefix'=>'assessment'],function(){
 });
 Route::post('getImage/{id}','ImageController@getImage')->name('getImage');
 Route::post('updateImage/{id}','ImageController@updateImage')->name('updateImage');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

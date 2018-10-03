@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="text-center"><span>{{$name_temp->student[0]->first_name.' '. $name_temp->student[0]->middle_name.' '.$name_temp->student[0]->last_name}}</span>
+
+<div class="text-center"><span>{{$name_temp->first_name.' '. $name_temp->middle_name.' '.$name_temp->last_name}}</span>
 </div>
 <div class="d-sm-flex " style="margin:15px">
     <div >
     @include('layouts.image_out')
-    <div><p>Дата рождения: {{$name_temp->student[0]->date_of_birthday}}</p>
-    <p>Группа: {{$name_temp->group_name}}</p>
+    <div><p>Дата рождения: {{$name_temp->date_of_birthday}}</p>
+    <p>Группа: {{$name_temp->group->group_name}}</p>
     </div>
     </div>
 
@@ -26,7 +27,7 @@
     <form method="post" action="{{route('editAssessment',$subject->id)}}">
         {{method_field('PUT')}}
      <div class="col-md-4">
-                <input type="hidden" name="student_id" value="{{$name_temp->student[0]->id}}">
+                <input type="hidden" name="student_id" value="{{$name_temp->id}}">
         <div class="">
                     <select class="custom-select custom-select-sm" name="assess" type="number">
                         <option selected value="Add_mark" type="text">Add mark</option>

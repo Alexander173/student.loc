@@ -5,14 +5,24 @@ Use App\Http\Requests\StudentRequest;
 use App\Student;
 use Illuminate\Http\Request;
 use App\Group;
+use App\Subject;
 class StudentsController extends Controller
 {
     public function show()
     {
         $list_stud = Student::all();
-       // dump($list_stud);
-              $group=Group::all();
-        return view('MainView.student',['list_stud'=>$list_stud,'group'=>$group]);
+        $group=Group::all();
+        $subject= Subject::all();
+        foreach($list_stud as $stud){
+            foreach($stud->assessment->groupBy('student_id') as $assessment){
+            $student_avg[$stud->id]=$assessment->avg('assess');
+                foreach($assessment->groupBy('subject_id') as $avg_cur_assess)
+                {
+    $subject_avg[$stud->id][$avg_cur_assess->first()->subject->subject_name]=$avg_cur_assess->avg('assess');
+                }
+            }
+        }
+        return view('MainView.student',['list_stud'=>$list_stud,'group'=>$group,'student_avg'=>$student_avg,'subject'=>$subject,'subject_avg'=>$subject_avg]);
     }
     public function create(StudentRequest $request)
     {

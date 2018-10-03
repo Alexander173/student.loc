@@ -5,6 +5,7 @@ use App\Assessment;
 use App\Http\Requests\GroupRequest;
 use Illuminate\Http\Request;
 use App\Group;
+use App\Subject;
 use PHPUnit\Exception;
 
 class GroupController extends Controller
@@ -44,6 +45,8 @@ class GroupController extends Controller
             {
                 $qs->orderBy('subject_id');
             }])->where('id',$id)->get();
+            $subject=Subject::all();
+
         $group_avg=array();
         $student_avg=array();
         foreach($list_group as $list) {
@@ -56,6 +59,6 @@ class GroupController extends Controller
             where('student_id',$last->student_id)->avg('assess');
         }
         }
-            return view('MainView.showGroup', ['list_group'=>$list_group,'arr'=>$group_avg,'studentAvg'=>$student_avg]);
+            return view('MainView.showGroup', ['list_group'=>$list_group,'group_avg'=>$group_avg,'studentAvg'=>$student_avg,'subject'=>$subject]);
     }
 }
