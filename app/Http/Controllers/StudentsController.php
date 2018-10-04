@@ -10,7 +10,7 @@ class StudentsController extends Controller
 {
     public function show()
     {
-        $list_stud = Student::all();
+        $list_stud = Student::paginate(5);
         $group=Group::all();
         $subject= Subject::all();
 
@@ -29,7 +29,7 @@ class StudentsController extends Controller
     {
         Student::create($request->all());
         $string='Student '.($request->first_name).' was added in the list';
-        return redirect('student/show')->with('string',$string);
+        return redirect('students/')->with('string',$string);
     }
     public function delete($id)
     {
@@ -40,13 +40,16 @@ class StudentsController extends Controller
                                                                                  'has been deleted';
         $student->delete();
 
-        return redirect('student/show')->with('string',$string);
+        return redirect('students/')->with('string',$string);
     }
      public function update(StudentRequest $request, $id)
     {
         $student=Student::find($id);
         $student->update($request->all());
         $string='Student № '.($id).' '.($student->first_name).' '.($student->middle_name).' has been Updated at now';
-        return redirect('student/show')->with('string',$string);
+        return back()->with('string',$string);
+    }
+    public function filter(Request $request,$id=5){
+
     }
 }

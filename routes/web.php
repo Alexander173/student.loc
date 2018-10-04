@@ -19,6 +19,8 @@ Route::group(['prefix'=>'students'],function(){
         Route::post('create','StudentsController@create')->name('createStudent');
         Route::delete('delete/{id}', 'StudentsController@delete')->name('deleteStudent');
         Route::put('update/{id}','StudentsController@update')->name('updateStudent');
+        Route::get('/{id}', 'AssessmentController@showStudent')->name('showStudent');
+        Route::post('/','StudentsController@filter')->name('filterStudent');
 });
 Route::group(['prefix'=>'groups'], function(){
     Route::get('/','GroupController@show')->name('groups');
@@ -34,7 +36,6 @@ Route::group(['prefix'=>'subjects'],function(){
 });
 
 Route::group(['prefix'=>'assessment'],function(){
-        Route::get('student/{id}', 'AssessmentController@showStudent')->name('showStudent');
         Route::get('group/{id}', 'GroupController@showGroup')->name('showGroup');
         Route::put('createOrUpdate/{id}','AssessmentController@editAssessment')->name('editAssessment');
         Route::delete('delete/{id}', 'AssessmentController@deleteAssessment')->name('deleteAssessment');

@@ -24,7 +24,7 @@ class SubjectRequest extends FormRequest
     public function rules()
     {
         return [
-                'subject_name'=>'required|string|min:4|max:25',
+                'subject_name'=>'required|min:3|max:25',
         ];
     }
 }

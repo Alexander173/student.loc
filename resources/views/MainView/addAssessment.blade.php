@@ -49,5 +49,6 @@
 
         @endif
     </div>
+    @include('layouts.button_update_students')
 
     @endsection

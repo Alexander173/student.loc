@@ -73,13 +73,13 @@
         @endforeach
     @endforeach
             </tbody>
-                <caption>
+                {{-- <caption>
                 @if(isset($group_avg))
                     @foreach($group_avg as $key=>$value)
                     <p class="text-sm-left font-weight-bold">{{$key ." = ". round($value,2)}}</p>
                     @endforeach
                  @endif
-                </caption>
+                </caption> --}}
             </table>
 @endif
     </div>
@@ -130,7 +130,7 @@
                     @foreach($list_group as $list_temp)
                         @foreach($list_temp->student as $list)
                             @if(!empty($studentAvg[$list->id]))
-                                @if(($studentAvg[$list->id]>=4.5))
+                                @if(($studentAvg[$list->id]>=4.5)&&($studentAvg[$list->id]!=5))
                                     <tr>
                                         <td>{{$list->id}}</td>
                                         <td>{{$list->first_name .' '. $list->middle_name.' ' . $list->last_name}}</td>

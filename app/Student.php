@@ -22,4 +22,10 @@ class Student extends Model
     public function image(){
         return $this->hasOne('App\Image','student_id','id');
     }
+    public function scopeGroup($query,$group_id){
+        return $query->where('group_id',$group_id);
+    }
+    public function scopeName($query,$first_name){
+        return $query->where('first_name',$first_name);
+    }
 }

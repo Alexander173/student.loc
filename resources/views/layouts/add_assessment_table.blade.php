@@ -1,13 +1,8 @@
 <div class="container1">
-
 @if(!$assessment->isEmpty())
     <table class="table table-bordered table-hover table-sm">
                <thead class="thead-dark">
                 <tr>
-                    {{-- <th scope="col">#</th>
-                    <th scope="col">Студент</th>
-                    <th scope="col">Дата рождения</th>
-                    <th scope="col">Группа</th> --}}
                     <th scope="col">Успеваемость</th>
                     <th scope="col">Оценка </th>
                     <th scope='col'>Удалить оценку </th>
@@ -15,10 +10,6 @@
                 </thead>
         <tbody>
             <tr>
-    {{-- <td rowspan="{{$assessment->count()+$assessment->groupBy('subject_id')->count()}}">{{$assessment->first()->student_id}}</td>
-    <td rowspan="{{$assessment->count()+$assessment->groupBy('subject_id')->count()}}" style="color: #000000">{{$name_temp->student[0]->first_name.' '. $name_temp->middle_name}}</td>
-    <td rowspan="{{$assessment->count()+$assessment->groupBy('subject_id')->count()}}">{{$name_temp->student[0]->date_of_birthday}}</td>
-    <td rowspan="{{$assessment->count()+$assessment->groupBy('subject_id')->count()}}">{{$name_temp->group_name}}</td> --}}
         @foreach($assessment->groupBy('subject_id') as $list)
         <td rowspan="{{$list->count()+1}}">{{$list[0]->subject->subject_name}}</td>
                         @foreach($list as $last)

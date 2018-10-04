@@ -14,7 +14,6 @@ class AssessmentController extends Controller
      public function showStudent($id)
     {
         $assessment=Assessment::where('student_id',$id)->orderBy('subject_id')->get();
-
         //Получаем предметы у которых нет оценок
         $u=array();
         foreach($assessment as $student_subject){
@@ -25,12 +24,13 @@ class AssessmentController extends Controller
             //которые не имеют ни одной,т.к. assessment будет пустой, а id студента где-то хранить нужно для view
             $name_temp=Student::where('id',$id)->first();
              //
-           // dd($name_temp);
+           //dd($name_temp);
             $studentAvg=$assessment->avg('assess');
             return view('MainView.addAssessment',['assessment'=>$assessment,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg,'list_subject'=>$list_subject]);
     }
-    public function editAssessment(Request $request, $id){
-                try
+    public function editAssessment(Request $request, $id)
+    {
+        try
                 {
             if(is_integer($request->Add_mark+1)){
 
@@ -50,7 +50,7 @@ class AssessmentController extends Controller
                 $student=Assessment::where('student_id',$request->student_id)->orderBy('subject_id')->get();
                 $name_temp=Student::where('id',$request->student_id)->get();
                 $studentAvg=$student->avg('assess');
-         return   redirect('assessment/student/'.($request->student_id))->with(['student'=>$student,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg]);
+         return   redirect('students/'.($request->student_id))->with(['student'=>$student,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg]);
             }
         }
         catch(\Exception $ex){
@@ -64,7 +64,7 @@ class AssessmentController extends Controller
                     $student=Assessment::where('student_id',$request->student_id)->orderBy('subject_id')->get();
                     $name_temp=Student::where('id',$request->student_id)->get();
                     $studentAvg=$student->avg('assess');
-            return redirect('assessment/student/'.($request->student_id))->with(['student'=>$student,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg]);
+            return redirect('students/'.($request->student_id))->with(['student'=>$student,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg]);
             }
         }
     public function deleteAssessment($id){
@@ -74,6 +74,6 @@ class AssessmentController extends Controller
             $student=Assessment::where('student_id',$temp)->orderBy('subject_id')->get();
             $name_temp=Student::where('id',$temp)->get();
             $studentAvg=$student->avg('assess');
-            return redirect('assessment/student/'.$temp)->with(['student'=>$student,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg]);
+            return redirect('students/'.$temp)->with(['student'=>$student,'name_temp'=>$name_temp,'studentAvg'=>$studentAvg]);
     }
 }

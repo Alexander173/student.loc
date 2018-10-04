@@ -42,17 +42,23 @@
 
 <div class="container">
     <div class="row">
-            
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 <form method="post" action="{{route('createSubject')}}">
 <div class="col-md-12 collapse" id="myDiv">
          <div class="col-sm-12">
-          
           <div class="row clearfix">
-            
         <div class="col-md-10 column">
             <div class="form-group">
                 <div class="col-sm-12">
-                        <input class="form-control" id="inputEmail3" placeholder="Новый предмет" name="subject_name" type="text">
+                        <input class="form-control" id="inputEmail3" placeholder="Новый предмет" name="subject_name" type="text-center">
                 </div>
             </div>
         </div>        

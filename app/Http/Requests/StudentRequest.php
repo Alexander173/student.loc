@@ -24,9 +24,9 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-        'first_name'=>'required|string|min:3|max:25',
-        'middle_name'=>'required|string|min:3|max:25',
-        'last_name'=>'required|string|min:3|max:25',
+        'first_name'=>'required|alpha|min:3|max:25',
+        'middle_name'=>'required|alpha|min:3|max:25',
+        'last_name'=>'required|alpha|min:3|max:25',
         'date_of_birthday'=>'required|date',
         'group_id'=>'required',
         ];

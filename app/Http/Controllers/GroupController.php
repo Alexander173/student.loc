@@ -12,9 +12,16 @@ class GroupController extends Controller
 {
      public function show()
     {
-        $list_group=Group::all();
-
-        return view('MainView.group', ['list_group'=>$list_group]);
+        $list_group=Group::with('assessment')->get();
+        foreach($list_group as $group){
+            $group_avg[$group->id]['avg_all']=$group->assessment->avg('assess');
+            foreach($group->assessment as $assess){
+                    $group_avg[$group->id][$assess->subject->subject_name]=$group->assessment->
+                    where('subject_id',$assess->subject_id)->avg('assess');
+            }
+        }
+        $subject=Subject::all();
+        return view('MainView.group', ['list_group'=>$list_group,'subject'=>$subject,'group_avg'=>$group_avg]);
     }
     public function create(GroupRequest $request)
     {

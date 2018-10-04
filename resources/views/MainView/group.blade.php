@@ -14,6 +14,10 @@
     <th scope="col">#</th>
     <th scope="col">Group name</th>
     <th scope="col">Description</th>
+    <th scope="col">Успеваемость</th>
+    @foreach($subject as $current_sub)
+    <th scope="col">{{$current_sub->subject_name}}</th>
+    @endforeach
     <th scope="col">Delete group</th>
     <th scope="col">Update group </th>
 
@@ -22,9 +26,21 @@
 <tbody class="">
     @foreach($list_group as $list)
     <tr>
-    <th scope="row">{{$list->id}}</th> 
-        <td><a href="{{route('showGroup', $list->id)}}" style="color: #000000">{{$list->group_name}} </a></td>
+    <th scope="row">{{$list->id}}</th>
+    <td><a href="{{route('showGroup', $list->id)}}" style="color: #000000">{{$list->group_name}} </a></td>
     <td>{{$list->description}}</td>
+    @if($group_avg[$list->id]['avg_all']!=null)
+        <td>{{round($group_avg[$list->id]['avg_all'],2)}}</td>
+        @else
+        <td> - </td>
+        @endif
+    @foreach($subject as $current_sub)
+        @if(isset($group_avg[$list->id][$current_sub->subject_name]))
+    <td> {{round($group_avg[$list->id][$current_sub->subject_name],2)}}</td>
+        @else
+        <td> - </td>
+        @endif
+    @endforeach
     <td>
         <form method="post" action="{{route('deleteGroup',$list->id)}}">
             {{method_field('DELETE')}}
@@ -44,13 +60,19 @@
 
 <div class="container">
     <div class="row">
-            
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 <form method="post" action="{{route('createGroup')}}">
 <div class="col-md-12 collapse" id="myDiv">
          <div class="col-sm-12">
-          
           <div class="row clearfix">
-            
         <div class="col-md-4 column">
             <div class="form-group">
                 <div class="col-sm-12">
@@ -69,7 +91,7 @@
              <button type="submit" class="btn btn-default" href="">Create</button>
              <button type="button" class="btn btn-link pull-right" data-toggle="collapse" data-target="#myDiv" data-open-text="Open">x</button>
         </div>
-    </div>       
+    </div>
     </div>
     </div>
     {{csrf_field()}}

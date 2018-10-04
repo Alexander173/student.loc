@@ -2,8 +2,8 @@
     <div class="container">
     <div class="col-md-1 pull">
             <button type="button" class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#myDiv{{$list->id}}" data-open-text="Open">Редактировать</button>
-        </div>
-  </div>
+    </div>
+</div>
     <div class="row">
 <form method="post" action="{{route('updateGroup', $list->id)}}">
  {{method_field('PUT')}}
@@ -20,7 +20,7 @@
         <div class="col-md-4 column">
         <div class="form-group">
             <div class="col-sm-12">
-                        <textarea class="form-control" id="" placeholder="Описание" name="description" type="text" value="">{{$list->description}}</textarea>
+                <textarea class="form-control" id="" placeholder="Описание" name="description" type="text" value="">{{$list->description}}</textarea>
             </div>
         </div>
         </div>

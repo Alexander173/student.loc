@@ -10,10 +10,10 @@ class GroupTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    { 
+    {
         factory(App\Subject::class,'assessment',3)->create();
         factory(App\Group::class,'assessment',3)->create();
-        factory(App\Student::class,'assessment',7)->create();       
-        factory(App\Assessment::class,'assessment',20)->create();
+        factory(App\Student::class,'assessment',14)->create();
+        factory(App\Assessment::class,'assessment',40)->create();
     }
 }
