@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 class ImageController extends Controller
 {
     public function getImage(Request $request,$id){
-       $ext=$request->file('photo')->getClientOriginalExtension();//расширение файла(указанное но не реальное)
+       $ext=$request->file('photo')->getClientOriginalExtension();
         $type_photo=array('jpeg','jpg','png');
         $file=$request->file('photo');
         if(in_array($file->extension(),$type_photo)){
@@ -15,7 +15,7 @@ class ImageController extends Controller
             $image->student_id=$id;
 
             $name_file=date('Y-m-d_H:i:s').'_'.$image->student->first_name.'_'.$id.'.'.$ext;
-            Storage::putFileAs("public/img_lk",$file,$name_file);//path для поля таблицы для asset
+            Storage::putFileAs("public/img_lk",$file,$name_file);/
             Image::create(['student_id'=>$id,'img_src'=>$name_file]);
             return back();
 
@@ -26,7 +26,7 @@ class ImageController extends Controller
         }
     }
     public function updateImage(Request $request,$id){
-        $ext=$request->file('photo')->getClientOriginalExtension();//расширение файла(указанное но не реальное)
+        $ext=$request->file('photo')->getClientOriginalExtension();
         $type_photo=array('jpeg','jpg','png');
         $file=$request->file('photo');
         if(in_array($file->extension(),$type_photo)){
@@ -37,7 +37,6 @@ class ImageController extends Controller
             $image->img_src=$name_file;
             $image->save();
             return back();
-
         }
         else{
             $string="File must be .jpeg .jpg .png";

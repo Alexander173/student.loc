@@ -30,18 +30,18 @@
         </tbody>
     </table>
 @else
- <table class="table table-bordered table-hover table-sm">
-               <thead class="thead-dark">
-                <tr>
-                    <th>Студент без оценок</th>
-                    <th scope="col">Оценки</th>
-                </tr>
-                </thead>
+    <table class="table table-bordered table-hover table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Студент без оценок</th>
+                <th scope="col">Оценки</th>
+            </tr>
+        </thead>
         <tbody>
             <tr>
-    <td>{{$name_temp->first_name.' '. $name_temp->middle_name}}</td>
-    <td class="text-center font-italic">Оценок нет </td>
-             </tr>
+                <td>{{$name_temp->first_name.' '. $name_temp->middle_name}}</td>
+                <td class="text-center font-italic">Оценок нет </td>
+            </tr>
         </tbody>
     </table>
 

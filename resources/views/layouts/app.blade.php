@@ -27,6 +27,10 @@
       width:200px;
       height:200px;
     }
+    .filter-form{
+      padding: 5px;
+      margin:10px;
+    }
     </style>
 </head>
 <body>
@@ -36,9 +40,9 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}Home
                 </a>
-                  <a class="navbar-brand" href="{{route('students')}}">Students</a>
-                    <a class="navbar-brand" href="{{route('groups')}}"> Groups</a>
-                    <a class="navbar-brand" href="{{route('subjects')}}">Subjects</a>
+                  <a class="navbar-brand" href="{{ route('student.index') }}">Students</a>
+                    <a class="navbar-brand" href="{{ route('groups') }}"> Groups</a>
+                    <a class="navbar-brand" href="{{ route('subjects') }}">Subjects</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

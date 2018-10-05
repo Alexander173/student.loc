@@ -14,10 +14,10 @@ class AssessmentsTable extends Migration
     public function up()
     {
         Schema::create('assessments', function (Blueprint $table) {
-            $table->increments('id');  
+            $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->integer('subject_id')->unsigned();
-            $table->tinyInteger('assess');           
+            $table->tinyInteger('assess');
         });
     }
 

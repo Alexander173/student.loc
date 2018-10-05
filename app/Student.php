@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Http\Request;
 class Student extends Model
 {
    // protected $table='students';
@@ -22,10 +22,20 @@ class Student extends Model
     public function image(){
         return $this->hasOne('App\Image','student_id','id');
     }
-    public function scopeGroup($query,$group_id){
-        return $query->where('group_id',$group_id);
+    public function scopeGroup($query,$temp){
+        if((request()->has('group_id'))&&(request()->group_id!=null)){
+        return $query->where('group_id',$temp);
+        }else {
+            return $query;
+        }
     }
-    public function scopeName($query,$first_name){
-        return $query->where('first_name',$first_name);
+    public function scopeName($query, $temp){
+        if((request()->has('first_name'))&&(request()->first_name!=null)){
+        return $query->where('first_name',$temp);
+        }
+        else{
+            return $query;
+        }
+
     }
 }

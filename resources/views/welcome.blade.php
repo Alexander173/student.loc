@@ -89,7 +89,7 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a> --}}
-                    <a href="{{route('students')}}">Список студентов</a>\
+                    <a href="{{route('student.index')}}">Список студентов</a>\
                     <a href="{{route('groups')}}">Списки групп</a>\
                     <a href="{{route('subjects')}}">Списки предметов</a>\
                 </div>

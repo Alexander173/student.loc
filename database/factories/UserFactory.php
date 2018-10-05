@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
-$factory->defineAS(App\Student::class,'assessment',function (Faker $faker){    
+$factory->defineAS(App\Student::class,'assessment',function (Faker $faker){
     return[
             'first_name'=>$faker->firstName,
             'middle_name'=>$faker->lastName,
@@ -33,7 +33,7 @@ $factory->defineAS(App\Student::class,'assessment',function (Faker $faker){
 $factory->defineAS(App\Group::class,'assessment',function (Faker $faker){
     return[
             'group_name'=>$faker->unique()->randomElement($array=array('ITB','JSS','PHPUnit','PSS','JS','IBM','Apple','Samsung')),
-            'description'=>$faker->text($maxNbChrars=50),            
+            'description'=>$faker->text($maxNbChrars=50),
     ];
 });
 $factory->defineAs(App\Subject::class,'assessment',function(Faker $faker){
